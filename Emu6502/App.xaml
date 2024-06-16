@@ -1,0 +1,9 @@
+﻿<Application x:Class="Emu6502.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Emu6502"
+             StartupUri="Views\CodeEditorView.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
