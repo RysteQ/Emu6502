@@ -4,8 +4,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpfExtendedToolkit="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:Emu6502"
         mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance viewModel:CodeEditorVM, IsDesignTimeCreatable=True}"
         Title="MainWindow" Height="450" Width="800">
     
     <Grid>
@@ -19,10 +21,20 @@
         </Grid.ColumnDefinitions>
 
         <Menu Grid.Row = "0" Grid.Column = "0" IsMainMenu = "True">
-            <MenuItem Header = "File" />
+            <MenuItem Header = "File">
+                <MenuItem Header = "Open File" Command = "{Binding CommandOpenFile}" />
+                <MenuItem Header = "Save" Command = "{Binding CommandSaveFile}" />
+                <MenuItem Header = "Save As" Command = "{Binding CommandSaveFileAs}" />
+                <Separator />
+                <MenuItem Header = "Exit" Command = "{Binding CommandCloseApplication}" />
+            </MenuItem>
         </Menu>
-        
-        <RichTextBox Grid.Row = "1" Grid.Column = "0" />
+
+        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "0" Text = "{Binding OpenedFile.Contents}">
+            <wpfExtendedToolkit:RichTextBox.TextFormatter>
+                <wpfExtendedToolkit:PlainTextFormatter />
+            </wpfExtendedToolkit:RichTextBox.TextFormatter>
+        </wpfExtendedToolkit:RichTextBox>
     </Grid>
     
 </Window>
