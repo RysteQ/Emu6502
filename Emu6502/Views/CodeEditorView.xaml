@@ -9,6 +9,12 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModel:CodeEditorVM, IsDesignTimeCreatable=True}"
         Title="MainWindow" Height="450" Width="800">
+
+    <Window.InputBindings>
+        <KeyBinding Gesture = "Ctrl+O" Command = "{Binding CommandOpenFile}" />
+        <KeyBinding Gesture = "Ctrl+S" Command = "{Binding CommandSaveFile}" />
+        <KeyBinding Gesture = "Ctrl+Alt+S" Command = "{Binding CommandSaveFileAs}" />
+    </Window.InputBindings>
     
     <Grid>
         <Grid.RowDefinitions>
@@ -22,15 +28,15 @@
 
         <Menu Grid.Row = "0" Grid.Column = "0" IsMainMenu = "True">
             <MenuItem Header = "File">
-                <MenuItem Header = "Open File" Command = "{Binding CommandOpenFile}" />
-                <MenuItem Header = "Save" Command = "{Binding CommandSaveFile}" />
-                <MenuItem Header = "Save As" Command = "{Binding CommandSaveFileAs}" />
+                <MenuItem Header = "_Open File" InputGestureText = "Ctrl+O" Command = "{Binding CommandOpenFile}" />
+                <MenuItem Header = "Save" InputGestureText = "Ctrl+S" Command = "{Binding CommandSaveFile}" />
+                <MenuItem Header = "Save As" InputGestureText = "Ctrl+Alt+S" Command = "{Binding CommandSaveFileAs}" />
                 <Separator />
                 <MenuItem Header = "Exit" Command = "{Binding CommandCloseApplication}" />
             </MenuItem>
         </Menu>
 
-        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "0" Text = "{Binding OpenedFile.Contents}">
+        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "0" Text = "{Binding OpenedFile.Contents}" Block.LineHeight = "1">
             <wpfExtendedToolkit:RichTextBox.TextFormatter>
                 <wpfExtendedToolkit:PlainTextFormatter />
             </wpfExtendedToolkit:RichTextBox.TextFormatter>
