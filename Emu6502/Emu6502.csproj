@@ -9,6 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\exit.png" />
+    <None Remove="Resources\Icons\font.png" />
+    <None Remove="Resources\Icons\font_size_decrease.png" />
+    <None Remove="Resources\Icons\font_size_increase.png" />
+    <None Remove="Resources\Icons\open_file.png" />
+    <None Remove="Resources\Icons\save_file.png" />
+    <None Remove="Resources\Icons\save_file_as.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\font.png" />
+    <Resource Include="Resources\Icons\font_size_decrease.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\open_file.png" />
+    <Resource Include="Resources\Icons\exit.png" />
+    <Resource Include="Resources\Icons\save_file.png" />
+    <Resource Include="Resources\Icons\save_file_as.png" />
+    <Resource Include="Resources\Icons\font_size_increase.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
   </ItemGroup>
 

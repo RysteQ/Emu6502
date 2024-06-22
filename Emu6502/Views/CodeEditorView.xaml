@@ -8,14 +8,14 @@
         xmlns:local="clr-namespace:Emu6502"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModel:CodeEditorVM, IsDesignTimeCreatable=True}"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Emu6502 - Code Editor" Height="450" Width="800">
 
     <Window.InputBindings>
         <KeyBinding Gesture = "Ctrl+O" Command = "{Binding CommandOpenFile}" />
         <KeyBinding Gesture = "Ctrl+S" Command = "{Binding CommandSaveFile}" />
         <KeyBinding Gesture = "Ctrl+Alt+S" Command = "{Binding CommandSaveFileAs}" />
     </Window.InputBindings>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height = "Auto" />
@@ -28,12 +28,60 @@
 
         <Menu Grid.Row = "0" Grid.Column = "0" IsMainMenu = "True">
             <MenuItem Header = "File">
-                <MenuItem Header = "_Open File" InputGestureText = "Ctrl+O" Command = "{Binding CommandOpenFile}" />
-                <MenuItem Header = "Save" InputGestureText = "Ctrl+S" Command = "{Binding CommandSaveFile}" />
-                <MenuItem Header = "Save As" InputGestureText = "Ctrl+Alt+S" Command = "{Binding CommandSaveFileAs}" />
+                <MenuItem Header = "_Open File" InputGestureText = "Ctrl+O" Command = "{Binding CommandOpenFile}">
+                    <MenuItem.Icon>
+                        <Image Source = "../Resources/Icons/open_file.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header = "Save" InputGestureText = "Ctrl+S" Command = "{Binding CommandSaveFile}">
+                    <MenuItem.Icon>
+                        <Image Source = "../Resources/Icons/save_file.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header = "Save As" InputGestureText = "Ctrl+Alt+S" Command = "{Binding CommandSaveFileAs}">
+                    <MenuItem.Icon>
+                        <Image Source = "../Resources/Icons/save_file_as.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
                 <Separator />
-                <MenuItem Header = "Exit" Command = "{Binding CommandCloseApplication}" />
+
+                <MenuItem Header = "Exit" Command = "{Binding CommandCloseApplication}">
+                    <MenuItem.Icon>
+                        <Image Source = "../Resources/Icons/exit.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
+
+            <MenuItem Header = "Emulator" />
+
+            <MenuItem Header = "Text">
+                <MenuItem Header = "Increase font size" InputGestureText = "Ctrl+Alt+Up arrow">
+                    <MenuItem.Icon>
+                        <Image Source = "../Resources/Icons/font_size_increase.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header = "Decrease font size" InputGestureText = "Ctrl+Alt+Down arrow">
+                    <MenuItem.Icon>
+                        <Image Source = "../Resources/Icons/font_size_decrease.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <Separator />
+
+                <MenuItem Header = "Font settings" InputGestureText = "Ctrl+Alt+F">
+                    <MenuItem.Icon>
+                        <Image Source = "../Resources/Icons/font.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+            <MenuItem Header = "Help" />
+
+            <MenuItem Header = "About" />
         </Menu>
 
         <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "0" Text = "{Binding OpenedFile.Contents}" Block.LineHeight = "1">
