@@ -11,9 +11,19 @@
         Title="Emu6502 - Code Editor" Height="450" Width="800">
 
     <Window.InputBindings>
+        <!-- File -->
         <KeyBinding Gesture = "Ctrl+O" Command = "{Binding CommandOpenFile}" />
         <KeyBinding Gesture = "Ctrl+S" Command = "{Binding CommandSaveFile}" />
         <KeyBinding Gesture = "Ctrl+Alt+S" Command = "{Binding CommandSaveFileAs}" />
+
+        <!-- Emulator -->
+        <KeyBinding Gesture = "Ctrl+E" Command = "{Binding CommandExecuteEmulator}" />
+        <KeyBinding Gesture = "Ctrl+Alt+E" Command = "{Binding CommandEmulatorSettings}" />
+
+        <!-- Text -->
+        <KeyBinding Gesture = "Ctrl+Alt+S" Command = "{Binding CommandIncreaseFontSize}" />
+        <KeyBinding Gesture = "Ctrl+Alt+S" Command = "{Binding CommandDecreaseFontSize}" />
+        <KeyBinding Gesture = "Ctrl+Alt+S" Command = "{Binding CommandChangeFont}" />
     </Window.InputBindings>
 
     <Grid>
@@ -23,10 +33,11 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "50" />
             <ColumnDefinition Width = "*" />
         </Grid.ColumnDefinitions>
 
-        <Menu Grid.Row = "0" Grid.Column = "0" IsMainMenu = "True">
+        <Menu Grid.Row = "0" Grid.Column = "0" Grid.ColumnSpan = "2" IsMainMenu = "True">
             <MenuItem Header = "File">
                 <MenuItem Header = "_Open File" InputGestureText = "Ctrl+O" Command = "{Binding CommandOpenFile}">
                     <MenuItem.Icon>
@@ -55,7 +66,19 @@
                 </MenuItem>
             </MenuItem>
 
-            <MenuItem Header = "Emulator" />
+            <MenuItem Header = "Emulator">
+                <MenuItem Header = "Run emulator" InputGestureText = "Ctrl+E">
+                    <MenuItem.Icon>
+                        <Image Source = "../Resources/Icons/emulator.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+
+                <MenuItem Header = "Emulator settings" InputGestureText = "Ctrl+Alt+E">
+                    <MenuItem.Icon>
+                        <Image Source = "../Resources/Icons/settings.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
 
             <MenuItem Header = "Text">
                 <MenuItem Header = "Increase font size" InputGestureText = "Ctrl+Alt+Up arrow">
@@ -81,10 +104,16 @@
 
             <MenuItem Header = "Help" />
 
-            <MenuItem Header = "About" />
+            <MenuItem Header = "About" Command = "{Binding CommandShowAboutPage}" />
         </Menu>
 
-        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "0" Text = "{Binding OpenedFile.Contents}" Block.LineHeight = "1">
+        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "0" Text = "10222" IsEnabled = "False" Block.LineHeight = "1">
+            <wpfExtendedToolkit:RichTextBox.TextFormatter>
+                <wpfExtendedToolkit:PlainTextFormatter />
+            </wpfExtendedToolkit:RichTextBox.TextFormatter>
+        </wpfExtendedToolkit:RichTextBox>
+
+        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "1" Text = "{Binding OpenedFile.Contents}" Block.LineHeight = "1">
             <wpfExtendedToolkit:RichTextBox.TextFormatter>
                 <wpfExtendedToolkit:PlainTextFormatter />
             </wpfExtendedToolkit:RichTextBox.TextFormatter>

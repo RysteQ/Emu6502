@@ -1,5 +1,6 @@
 ﻿using Emu6502.Models.CodeEditorModels;
 using Emu6502.Services.BaseModels;
+using Emu6502.Views;
 using Microsoft.Win32;
 using System.IO;
 using System.Windows;
@@ -14,16 +15,25 @@ public class CodeEditorVM : BaseViewModel
         CommandSaveFile = new(SaveFile);
         CommandSaveFileAs = new(SaveFileAs);
         CommandCloseApplication = new(CloseApplication);
+        CommandShowAboutPage = new(ShowAboutPage);
+        CommandExecuteEmulator = new(ExecuteEmulator);
+        CommandEmulatorSettings = new(EmulatorSettings);
+        CommandIncreaseFontSize = new(IncreaseFontSize);
+        CommandDecreaseFontSize = new(DecreaseFontSize);
+        CommandChangeFont = new(ChangeFont);
     }
 
     private void OpenFile()
     {
-        OpenFileDialog openFileDialog = new();
-
-        openFileDialog.Filter = "Assembly Source File (*.asm)|*.asm|Text (*.txt)|*.txt|All Files (*.*)|*.*";
+        OpenFileDialog openFileDialog = new()
+        {
+            Filter = "Assembly Source File (*.asm)|*.asm|Text (*.txt)|*.txt|All Files (*.*)|*.*"
+        };
 
         if (openFileDialog.ShowDialog() == false)
+        {
             return;
+        }
 
         if (OpenedFile.ValueChanged)
         {
@@ -49,12 +59,32 @@ public class CodeEditorVM : BaseViewModel
 
     private void SaveFile()
     {
+        if (OpenedFile.FilePath == string.Empty)
+        {
+            SaveFileAs();
 
+            return;
+        }
+
+        File.WriteAllText(OpenedFile.FilePath, OpenedFile.Contents);
     }
 
     private void SaveFileAs()
     {
+        SaveFileDialog saveFileDialog = new()
+        {
+            Filter = "Assembly Source File (*.asm)|*.asm|Text (*.txt)|*.txt|All Files (*.*)|*.*"
+        };
 
+        if (saveFileDialog.ShowDialog() == false)
+        {
+            return;
+        }
+
+        OpenedFile.Filename = saveFileDialog.FileName.Split('\\').Last();
+        OpenedFile.FilePath = string.Join('\\', saveFileDialog.FileName.Split('\\').SkipLast(1));
+
+        File.WriteAllText(saveFileDialog.FileName, OpenedFile.Contents);
     }
 
     private void CloseApplication()
@@ -62,10 +92,48 @@ public class CodeEditorVM : BaseViewModel
         Environment.Exit(0);
     }
 
+    private void ShowAboutPage()
+    {
+        AboutView about = new();
+
+        about.Show();
+    }
+
+    private void ExecuteEmulator()
+    {
+        // TODO
+    }
+
+    private void EmulatorSettings()
+    {
+        // TODO
+    }
+
+    private void IncreaseFontSize()
+    {
+        // TODO
+    }
+
+    private void DecreaseFontSize()
+    {
+        // TODO
+    }
+
+    private void ChangeFont()
+    {
+        // TODO
+    }
+
     public Command CommandOpenFile { get; init; }
     public Command CommandSaveFile { get; init; }
     public Command CommandSaveFileAs { get; init; }
     public Command CommandCloseApplication { get; init; }
+    public Command CommandShowAboutPage { get; init; }
+    public Command CommandExecuteEmulator { get; init; }
+    public Command CommandEmulatorSettings { get; init; }
+    public Command CommandIncreaseFontSize { get; init; }
+    public Command CommandDecreaseFontSize { get; init; }
+    public Command CommandChangeFont { get; init; }
 
     private FileUi _openedFile = new();
     public FileUi OpenedFile
