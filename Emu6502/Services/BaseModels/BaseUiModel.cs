@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace Emu6502.Services.BaseModels;
 
-public class BaseUiModel
+public class BaseUiModel : INotifyPropertyChanged
 {
     public void SetProperty<T>(ref T source, T value, [CallerMemberName] string propertyName = "")
     {
