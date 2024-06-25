@@ -4,12 +4,84 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Emu6502.Views"
+      xmlns:viewModel="clr-namespace:Emu6502.ViewModels"
+      xmlns:uiModels="clr-namespace:Emu6502.Models.CodeEditorModels"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="Font Dialog">
+      d:DesignHeight="450" d:DesignWidth="400"
+      d:DataContext="{d:DesignInstance viewModel:FontDialogVM, IsDesignTimeCreatable=True}"
+      Title="Font Dialog" ResizeMode="NoResize" Height = "500" Width = "400">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "60*" />
+            <RowDefinition Height = "30*" />
+            <RowDefinition Height = "10*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "50*" />
+            <ColumnDefinition Width = "50*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox Grid.Row = "0" Grid.Column = "0" Margin = "10,10,5,5" SelectionMode = "Single" ItemsSource = "{Binding Fonts}" SelectedItem = "{Binding SelectedFont}" SelectionChanged = "ListBoxSelectedFontSelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate d:DataType = "uiModels:FontUi">
+                    <StackPanel Orientation = "Vertical">
+                        <Label FontFamily = "{Binding Font}" Content = "{Binding Font.Source}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Row = "0" Grid.Column = "1" Margin = "5,10,10,5">
+            <Label Content = "Size" />
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height = "20" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width = "15*" />
+                    <ColumnDefinition Width = "70*" />
+                    <ColumnDefinition Width = "15*" />
+                </Grid.ColumnDefinitions>
+
+                <TextBox x:Name = "TextBoxFontSize" Grid.Row = "0" Grid.Column = "1" IsEnabled = "False" Margin = "10,0,10,0" Text = "{Binding SelectedFont.Size, Mode = OneWay}" />
+                <Button Grid.Row = "0" Grid.Column = "0" Content = "-" Click = "ButtonDecreaseFontSizeClick" Command = "{Binding CommandDecreaseFontSize}" />
+                <Button Grid.Row = "0" Grid.Column = "2" Content = "+" Click = "ButtonIncreaseFontSizeClick" Command = "{Binding CommandIncreaseFontSize}" />
+            </Grid>
+        </StackPanel>
+
+        <Frame Grid.Row = "1" Grid.Column = "0" Grid.ColumnSpan = "2" Margin = "10,5,10,5" BorderBrush = "Black" BorderThickness = "1">
+            <Frame.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height = "*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width = "*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name = "LabelFontSampleText" VerticalAlignment = "Center" HorizontalAlignment = "Center" Content = "Sample text 0123456789" />
+                </Grid>
+            </Frame.Content>
+        </Frame>
+
+        <Grid Grid.Row = "2" Grid.Column = "1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "50*" />
+                <ColumnDefinition Width = "50*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row = "0" Grid.Column = "0" Content = "Cancel" Margin = "10,5,5,10" />
+            <Button Grid.Row = "0" Grid.Column = "1" Content = "Save" Margin = "5,5,10,10" />
+        </Grid>
     </Grid>
     
 </Window>

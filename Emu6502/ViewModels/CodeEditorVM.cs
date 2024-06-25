@@ -111,17 +111,19 @@ public class CodeEditorVM : BaseViewModel
 
     private void IncreaseFontSize()
     {
-        // TODO
+        EditorFont.Size++;
     }
 
     private void DecreaseFontSize()
     {
-        // TODO
+        EditorFont.Size--;
     }
 
     private void ChangeFont()
     {
-        // TODO
+        FontDialogView fontDialog = new();
+
+        fontDialog.Show();
     }
 
     public Command CommandOpenFile { get; init; }
@@ -140,5 +142,12 @@ public class CodeEditorVM : BaseViewModel
     {
         get => _openedFile;
         set => SetProperty(ref _openedFile, value);
+    }
+
+    private FontUi _editorFont = new();
+    public FontUi EditorFont
+    {
+        get => _editorFont;
+        set => SetProperty(ref _editorFont, value);
     }
 }

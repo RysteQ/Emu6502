@@ -8,7 +8,7 @@
         xmlns:local="clr-namespace:Emu6502"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance viewModel:CodeEditorVM, IsDesignTimeCreatable=True}"
-        Title="Emu6502 - Code Editor" Height="450" Width="800">
+        Title="Emu6502 - Code Editor" Height="450" Width="800" MinHeight = "300" MinWidth = "400">
 
     <Window.InputBindings>
         <!-- File -->
@@ -81,13 +81,13 @@
             </MenuItem>
 
             <MenuItem Header = "Text">
-                <MenuItem Header = "Increase font size" InputGestureText = "Ctrl+Alt+Up arrow">
+                <MenuItem Header = "Increase font size" InputGestureText = "Ctrl+Alt+Up arrow" Command = "{Binding CommandIncreaseFontSize}">
                     <MenuItem.Icon>
                         <Image Source = "../Resources/Icons/font_size_increase.png" />
                     </MenuItem.Icon>
                 </MenuItem>
 
-                <MenuItem Header = "Decrease font size" InputGestureText = "Ctrl+Alt+Down arrow">
+                <MenuItem Header = "Decrease font size" InputGestureText = "Ctrl+Alt+Down arrow" Command = "{Binding CommandDecreaseFontSize}">
                     <MenuItem.Icon>
                         <Image Source = "../Resources/Icons/font_size_decrease.png" />
                     </MenuItem.Icon>
@@ -95,7 +95,7 @@
 
                 <Separator />
 
-                <MenuItem Header = "Font settings" InputGestureText = "Ctrl+Alt+F">
+                <MenuItem Header = "Font settings" InputGestureText = "Ctrl+Alt+F" Command = "{Binding CommandChangeFont}">
                     <MenuItem.Icon>
                         <Image Source = "../Resources/Icons/font.png" />
                     </MenuItem.Icon>
@@ -107,13 +107,13 @@
             <MenuItem Header = "About" Command = "{Binding CommandShowAboutPage}" />
         </Menu>
 
-        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "0" Text = "10222" IsEnabled = "False" Block.LineHeight = "1">
+        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "0" Text = "10222" IsEnabled = "False" Block.LineHeight = "1" FontSize = "{Binding EditorFont.Size}" FontFamily = "{Binding EditorFont.Font}">
             <wpfExtendedToolkit:RichTextBox.TextFormatter>
                 <wpfExtendedToolkit:PlainTextFormatter />
             </wpfExtendedToolkit:RichTextBox.TextFormatter>
         </wpfExtendedToolkit:RichTextBox>
 
-        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "1" Text = "{Binding OpenedFile.Contents}" Block.LineHeight = "1">
+        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "1" Text = "{Binding OpenedFile.Contents}" Block.LineHeight = "1" FontSize = "{Binding EditorFont.Size}" FontFamily = "{Binding EditorFont.Font}">
             <wpfExtendedToolkit:RichTextBox.TextFormatter>
                 <wpfExtendedToolkit:PlainTextFormatter />
             </wpfExtendedToolkit:RichTextBox.TextFormatter>

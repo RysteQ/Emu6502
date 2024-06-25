@@ -5,8 +5,8 @@ namespace Emu6502.Models.CodeEditorModels;
 
 public class FontUi : BaseUiModel
 {
-    private int _size = 10;
-    public int Size
+    private double _size = 10;
+    public double Size
     {
         get => _size;
         set => SetProperty(ref _size, value);
