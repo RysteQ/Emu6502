@@ -23,7 +23,7 @@
             <ColumnDefinition Width = "50*" />
         </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Row = "0" Grid.Column = "0" Margin = "10,10,5,5" SelectionMode = "Single" ItemsSource = "{Binding Fonts}" SelectedItem = "{Binding SelectedFont}" SelectionChanged = "ListBoxSelectedFontSelectionChanged">
+        <ListBox Grid.Row = "0" Grid.Column = "0" Margin = "10,10,5,5" SelectionMode = "Single" ItemsSource = "{Binding Fonts}" SelectedItem = "{Binding SelectedFont}" SelectionChanged = "ListBoxSelectedItemSelectionChanged">
             <ListBox.ItemTemplate>
                 <DataTemplate d:DataType = "uiModels:FontUi">
                     <StackPanel Orientation = "Vertical">
@@ -47,9 +47,9 @@
                     <ColumnDefinition Width = "15*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBox x:Name = "TextBoxFontSize" Grid.Row = "0" Grid.Column = "1" IsEnabled = "False" Margin = "10,0,10,0" Text = "{Binding SelectedFont.Size, Mode = OneWay}" />
-                <Button Grid.Row = "0" Grid.Column = "0" Content = "-" Click = "ButtonDecreaseFontSizeClick" Command = "{Binding CommandDecreaseFontSize}" />
-                <Button Grid.Row = "0" Grid.Column = "2" Content = "+" Click = "ButtonIncreaseFontSizeClick" Command = "{Binding CommandIncreaseFontSize}" />
+                <TextBox x:Name = "TextBoxFontSize" Grid.Row = "0" Grid.Column = "1" IsEnabled = "False" Margin = "10,0,10,0" Text = "{Binding SelectedFont.Size}" />
+                <Button Grid.Row = "0" Grid.Column = "0" Content = "-" Click = "ButtonFontSizeChangedClick" Command = "{Binding CommandDecreaseFontSize}" />
+                <Button Grid.Row = "0" Grid.Column = "2" Content = "+" Click = "ButtonFontSizeChangedClick" Command = "{Binding CommandIncreaseFontSize}" />
             </Grid>
         </StackPanel>
 
@@ -64,7 +64,7 @@
                         <ColumnDefinition Width = "*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label x:Name = "LabelFontSampleText" VerticalAlignment = "Center" HorizontalAlignment = "Center" Content = "Sample text 0123456789" />
+                    <Label x:Name = "LabelFontSampleText" VerticalAlignment = "Center" HorizontalAlignment = "Center" FontSize = "10" Content = "Sample text 0123456789" />
                 </Grid>
             </Frame.Content>
         </Frame>
@@ -79,8 +79,8 @@
                 <ColumnDefinition Width = "50*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row = "0" Grid.Column = "0" Content = "Cancel" Margin = "10,5,5,10" />
-            <Button Grid.Row = "0" Grid.Column = "1" Content = "Save" Margin = "5,5,10,10" />
+            <Button Grid.Row = "0" Grid.Column = "0" Content = "Cancel" Margin = "10,5,5,10" Click = "ButtonCancelFormClick" />
+            <Button Grid.Row = "0" Grid.Column = "1" Content = "Save" Margin = "5,5,10,10" Click = "ButtonSaveFormClick" />
         </Grid>
     </Grid>
     

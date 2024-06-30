@@ -1,4 +1,5 @@
-﻿using Emu6502.ViewModels;
+﻿using Emu6502.Models.CodeEditorModels;
+using Emu6502.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -12,24 +13,36 @@ public partial class FontDialogView : Window
     public FontDialogView()
     {
         InitializeComponent();
-        
+
         _viewModel = new();
         DataContext = _viewModel;
     }
 
-    private void ListBoxSelectedFontSelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void ButtonSaveFormClick(object sender, RoutedEventArgs e)
+    {
+        this.DialogResult = true;
+        Close();
+    }
+
+    private void ButtonCancelFormClick(object sender, RoutedEventArgs e)
+    {
+        this.DialogResult = false;
+        Close();
+    }
+
+    private void ButtonFontSizeChangedClick(object sender, RoutedEventArgs e)
+    {
+        LabelFontSampleText.FontSize = _viewModel.SelectedFont.Size;
+    }
+
+    private void ListBoxSelectedItemSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         LabelFontSampleText.FontFamily = _viewModel.SelectedFont.Font;
     }
 
-    private void ButtonIncreaseFontSizeClick(object sender, RoutedEventArgs e)
+    public FontUi Font
     {
-        LabelFontSampleText.FontSize++;
-    }
-
-    private void ButtonDecreaseFontSizeClick(object sender, RoutedEventArgs e)
-    {
-        LabelFontSampleText.FontSize--;
+        get => _viewModel.SelectedFont;
     }
 
     private FontDialogVM _viewModel;
