@@ -10,7 +10,9 @@ public class BaseUiModel : INotifyPropertyChanged
         source = value;
 
         if (ObservingChanges)
+        {
             ValueChanged = true;
+        }
 
         OnPropertyChanged(propertyName);
     }
@@ -23,11 +25,6 @@ public class BaseUiModel : INotifyPropertyChanged
     public void StopObservingForPropertyChanges()
     {
         ObservingChanges = false;
-    }
-
-    public bool IsObservingChanges()
-    {
-        return ObservingChanges;
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
