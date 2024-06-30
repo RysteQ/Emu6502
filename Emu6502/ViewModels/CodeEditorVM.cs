@@ -21,6 +21,8 @@ public class CodeEditorVM : BaseViewModel
         CommandIncreaseFontSize = new(IncreaseFontSize);
         CommandDecreaseFontSize = new(DecreaseFontSize);
         CommandChangeFont = new(ChangeFont);
+
+        OpenedFile.StartObservingForPropertyChanges();
     }
 
     private void OpenFile()
@@ -89,6 +91,20 @@ public class CodeEditorVM : BaseViewModel
 
     private void CloseApplication()
     {
+        if (OpenedFile.ValueChanged)
+        {
+            MessageBoxResult saveChanges = MessageBox.Show("You haven't saved your changes", "Warning", MessageBoxButton.YesNoCancel);
+            
+            if (saveChanges == MessageBoxResult.Yes)
+            {
+                SaveFile();
+            }
+            else if (saveChanges == MessageBoxResult.Cancel)
+            {
+                return;
+            }
+        }
+
         Environment.Exit(0);
     }
 
@@ -111,19 +127,29 @@ public class CodeEditorVM : BaseViewModel
 
     private void IncreaseFontSize()
     {
-        EditorFont.Size++;
+        if (EditorFont.Size < 30)
+        {
+            EditorFont.Size++;
+        }
     }
 
     private void DecreaseFontSize()
     {
-        EditorFont.Size--;
+        if (EditorFont.Size > 10)
+        {
+            EditorFont.Size--;
+        }
     }
 
     private void ChangeFont()
     {
         FontDialogView fontDialog = new();
 
-        fontDialog.Show();
+        // without the == true it doesn't want to compile and I cannot bother with this now
+        if (fontDialog.ShowDialog() == true)
+        {
+            EditorFont = fontDialog.Font;
+        }
     }
 
     public Command CommandOpenFile { get; init; }
@@ -141,7 +167,11 @@ public class CodeEditorVM : BaseViewModel
     public FileUi OpenedFile
     {
         get => _openedFile;
-        set => SetProperty(ref _openedFile, value);
+        set
+        {
+            SetProperty(ref _openedFile, value);
+            _openedFile.StartObservingForPropertyChanges();
+        }
     }
 
     private FontUi _editorFont = new();

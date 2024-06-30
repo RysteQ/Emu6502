@@ -21,9 +21,9 @@
         <KeyBinding Gesture = "Ctrl+Alt+E" Command = "{Binding CommandEmulatorSettings}" />
 
         <!-- Text -->
-        <KeyBinding Gesture = "Ctrl+Alt+S" Command = "{Binding CommandIncreaseFontSize}" />
-        <KeyBinding Gesture = "Ctrl+Alt+S" Command = "{Binding CommandDecreaseFontSize}" />
-        <KeyBinding Gesture = "Ctrl+Alt+S" Command = "{Binding CommandChangeFont}" />
+        <KeyBinding Gesture = "Ctrl+Alt+Up" Command = "{Binding CommandIncreaseFontSize}" />
+        <KeyBinding Gesture = "Ctrl+Alt+Down" Command = "{Binding CommandDecreaseFontSize}" />
+        <KeyBinding Gesture = "Ctrl+Alt+F" Command = "{Binding CommandChangeFont}" />
     </Window.InputBindings>
 
     <Grid>
@@ -107,17 +107,9 @@
             <MenuItem Header = "About" Command = "{Binding CommandShowAboutPage}" />
         </Menu>
 
-        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "0" Text = "10222" IsEnabled = "False" Block.LineHeight = "1" FontSize = "{Binding EditorFont.Size}" FontFamily = "{Binding EditorFont.Font}">
-            <wpfExtendedToolkit:RichTextBox.TextFormatter>
-                <wpfExtendedToolkit:PlainTextFormatter />
-            </wpfExtendedToolkit:RichTextBox.TextFormatter>
-        </wpfExtendedToolkit:RichTextBox>
+        <TextBlock Grid.Row = "1" Grid.Column = "0" Text = "10222" IsEnabled = "False" Block.LineHeight = "1" FontSize = "{Binding EditorFont.Size}" FontFamily = "{Binding EditorFont.Font}" />
 
-        <wpfExtendedToolkit:RichTextBox Grid.Row = "1" Grid.Column = "1" Text = "{Binding OpenedFile.Contents}" Block.LineHeight = "1" FontSize = "{Binding EditorFont.Size}" FontFamily = "{Binding EditorFont.Font}">
-            <wpfExtendedToolkit:RichTextBox.TextFormatter>
-                <wpfExtendedToolkit:PlainTextFormatter />
-            </wpfExtendedToolkit:RichTextBox.TextFormatter>
-        </wpfExtendedToolkit:RichTextBox>
+        <TextBox Grid.Row = "1" Grid.Column = "1" TextWrapping = "Wrap" AcceptsReturn = "True" Text = "{Binding OpenedFile.Contents, UpdateSourceTrigger = PropertyChanged}" Block.LineHeight = "1" FontSize = "{Binding EditorFont.Size}" FontFamily = "{Binding EditorFont.Font}" />
     </Grid>
     
 </Window>
