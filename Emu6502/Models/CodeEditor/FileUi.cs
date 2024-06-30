@@ -1,6 +1,6 @@
 ﻿using Emu6502.Services.BaseModels;
 
-namespace Emu6502.Models.CodeEditorModels;
+namespace Emu6502.Models.CodeEditor;
 
 public class FileUi : BaseUiModel
 {

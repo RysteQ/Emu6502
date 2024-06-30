@@ -1,4 +1,4 @@
-﻿using Emu6502.Models.CodeEditorModels;
+﻿using Emu6502.Models.CodeEditor;
 using Emu6502.ViewModels;
 using System.Windows;
 using System.Windows.Controls;

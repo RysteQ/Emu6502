@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Emu6502.Views"
       xmlns:viewModel="clr-namespace:Emu6502.ViewModels"
-      xmlns:uiModels="clr-namespace:Emu6502.Models.CodeEditorModels"
+      xmlns:uiModels="clr-namespace:Emu6502.Models.CodeEditor"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="400"
       d:DataContext="{d:DesignInstance viewModel:FontDialogVM, IsDesignTimeCreatable=True}"

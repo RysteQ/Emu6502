@@ -1,7 +1,7 @@
 ﻿using Emu6502.Services.BaseModels;
 using System.Windows.Media;
 
-namespace Emu6502.Models.CodeEditorModels;
+namespace Emu6502.Models.CodeEditor;
 
 public class FontUi : BaseUiModel
 {
