@@ -18,6 +18,17 @@ public partial class FontDialogView : Window
         DataContext = _viewModel;
     }
 
+    public FontDialogView(string fontFamily, double fontSize)
+    {
+        InitializeComponent();
+
+        _viewModel = new(fontFamily, fontSize);
+        DataContext = _viewModel;
+
+        LabelFontSampleText.FontFamily = _viewModel.SelectedFont.Font;
+        LabelFontSampleText.FontSize = _viewModel.SelectedFont.Size;
+    }
+
     private void ButtonSaveFormClick(object sender, RoutedEventArgs e)
     {
         this.DialogResult = true;

@@ -143,7 +143,7 @@ public class CodeEditorVM : BaseViewModel
 
     private void ChangeFont()
     {
-        FontDialogView fontDialog = new();
+        FontDialogView fontDialog = new(EditorFont.Font.Source, EditorFont.Size);
 
         // without the == true it doesn't want to compile and I cannot bother with this now
         if (fontDialog.ShowDialog() == true)

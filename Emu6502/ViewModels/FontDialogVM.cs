@@ -14,7 +14,7 @@ public class FontDialogVM : BaseViewModel
         SelectedFont = Fonts.First();
     }
 
-    public FontDialogVM(string defaultFontFamily = "Courier", int defaultFontSize = 10)
+    public FontDialogVM(string defaultFontFamily = "Courier", double defaultFontSize = 10)
     {
         CommandIncreaseFontSize = new(IncreaseFontSize);
         CommandDecreaseFontSize = new(DecreaseFontSize);
@@ -29,6 +29,7 @@ public class FontDialogVM : BaseViewModel
         if (selectedDefaultFont != null)
         {
             SelectedFont = selectedDefaultFont;
+            SelectedFont.Size = defaultFontSize;
         }
     }
 
@@ -65,6 +66,7 @@ public class FontDialogVM : BaseViewModel
         new() { Font = new("Consolas"), Size = 10 },
         new() { Font = new("Constantia"), Size = 10 },
         new() { Font = new("Corbel"), Size = 10 },
+        new() { Font = new("Courier"), Size = 10 },
         new() { Font = new("Courier New"), Size = 10 },
         new() { Font = new("Ebrima"), Size = 10 },
         new() { Font = new("Franklin Gothic Medium"), Size = 10 },
