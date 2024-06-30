@@ -30,10 +30,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height = "Auto" />
             <RowDefinition Height = "*" />
+            <RowDefinition Height = "Auto" />
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width = "50" />
             <ColumnDefinition Width = "*" />
         </Grid.ColumnDefinitions>
 
@@ -102,14 +102,30 @@
                 </MenuItem>
             </MenuItem>
 
-            <MenuItem Header = "Help" />
-
             <MenuItem Header = "About" Command = "{Binding CommandShowAboutPage}" />
         </Menu>
 
-        <TextBlock Grid.Row = "1" Grid.Column = "0" Text = "10222" IsEnabled = "False" Block.LineHeight = "1" FontSize = "{Binding EditorFont.Size}" FontFamily = "{Binding EditorFont.Font}" />
+        <TextBox Grid.Row = "1" Grid.Column = "1" TextWrapping = "Wrap" AcceptsReturn = "True" Text = "{Binding OpenedFile.Contents, UpdateSourceTrigger = PropertyChanged}" Block.LineHeight = "1" FontSize = "{Binding EditorFont.Size}" FontFamily = "{Binding EditorFont.Font}" TextChanged = "TextBoxCodeEditorTextChanged" />
 
-        <TextBox Grid.Row = "1" Grid.Column = "1" TextWrapping = "Wrap" AcceptsReturn = "True" Text = "{Binding OpenedFile.Contents, UpdateSourceTrigger = PropertyChanged}" Block.LineHeight = "1" FontSize = "{Binding EditorFont.Size}" FontFamily = "{Binding EditorFont.Font}" />
+        <Grid Grid.Row = "2" Grid.Column = "0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height = "*" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width = "*" />
+                <ColumnDefinition Width = "1" />
+                <ColumnDefinition Width = "100" />
+                <ColumnDefinition Width = "1" />
+                <ColumnDefinition Width = "100" />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row = "0" Grid.Column = "0" Content = "{Binding OpenedFile.Filename}" />
+            <Border Grid.Row = "0" Grid.Column = "1" Background = "Gray" />
+            <Label x:Name = "LabelRowCount" Grid.Row = "0" Grid.Column = "2" Content = "Row: 1" />
+            <Border Grid.Row = "0" Grid.Column = "3" Background = "Gray" />
+            <Label x:Name = "LabelColumnCount" Grid.Row = "0" Grid.Column = "4" Content = "Col: 1" />
+        </Grid>
     </Grid>
     
 </Window>
